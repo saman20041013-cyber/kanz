@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <title>تسجيل الدخول - نظام الطلبات</title>
+  <style>
+    body {
+        font-family: 'Arial', sans-serif;
+        background: #f0f2f5;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+    }
+    .saraki {
+        background: white;
+        padding: 40px;
+        border-radius: 15px;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        width: 350px;
+        text-align: center;
+    }
+    h2 { color: #333; margin-bottom: 25px; text-align: center; }
+    .input-group { text-align: right; margin-bottom: 15px; }
+    label { display: block; margin-bottom: 5px; font-weight: bold; color: #555; }
+    input[type="text"], input[type="password"] {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        box-sizing: border-box;
+        font-size: 16px;
+        font-family: 'Arial';
+    }
+    button {
+        width: 100%;
+        padding: 12px;
+        background: #222;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 16px;
+        font-weight: bold;
+        margin-top: 10px;
+    }
+    button:hover { background: #444; }
+    .error-msg { color: #e74c3c; font-size: 14px; margin-top: 15px; display: none; font-weight: bold; }
+    .footer-link { margin-top: 20px; color: #777; font-size: 14px; }
+  </style>
+</head>
+
+<body>
+  <div class="saraki">
+    <h2>تسجيل الدخول</h2>
+    
+    <form id="loginForm">
+      <div class="input-group">
+        <label>اسم المستخدم:</label>
+        <input type="text" id="userInput" placeholder="أدخل اسم المستخدم" required>
+      </div>
+      
+      <div class="input-group">
+        <label>كلمة المرور:</label>
+        <input type="password" id="passInput" placeholder="أدخل كلمة المرور" required>
+      </div>
+
+      <div style="text-align: right; margin-bottom: 15px;">
+        <label style="font-weight: normal; font-size: 14px; color: #666;">
+          <input type="checkbox"> تذكرني
+        </label>
+      </div>
+
+      <button type="submit">دخول</button>
+      
+      <p id="error" class="error-msg">❌ اسم المستخدم أو كلمة المرور غير صحيحة!</p>
+
+      <div class="footer-link">
+        <p>ليس لديك حساب؟ اتصل بالمسؤول</p>
+      </div>
+    </form>
+  </div>
+
+  <script>
+    document.getElementById('loginForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        var user = document.getElementById('userInput').value;
+        var pass = document.getElementById('passInput').value;
+
+        // قائمة المستخدمين
+        var usersList = {
+            "saman": "123",
+            "sana": "1234"
+        };
+
+        if (usersList[user] && usersList[user] === pass) {
+            // التوجه إلى صفحة الطلبات
+            window.location.href = "order.html";
+        } else {
+            // إظهار رسالة الخطأ
+            document.getElementById('error').style.display = 'block';
+            document.getElementById('passInput').value = "";
+        }
+    });
+  </script>
+</body>
+</html>
